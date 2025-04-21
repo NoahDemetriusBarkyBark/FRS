@@ -23,6 +23,10 @@
       font-size: 15em;
       text-align: center;
       margin-top: 20%;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
 
     #cipherText {
@@ -37,6 +41,13 @@
     const hidden = [78, 85, 76, 76, 73, 85, 83]; // ASCII for "NULLIUS"
     document.getElementById("cipherText").innerText =
       hidden.map(c => String.fromCharCode(c)).join('');
+
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && ['u', 's', 'a', 'c'].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+    });
   </script>
 </body>
 </html>
